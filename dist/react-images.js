@@ -993,10 +993,10 @@ var Modal = function (_Component) {
   }
 
   createClass(Modal, [{
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(nextProps) {
-      if (nextProps.components !== this.props.components) {
-        this.cacheComponents(nextProps.components);
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps) {
+      if (prevProps.components !== this.props.components) {
+        this.cacheComponents(prevProps.components);
       }
     }
 
@@ -1119,7 +1119,9 @@ var _initialiseProps$1 = function _initialiseProps() {
     var closeOnBackdropClick = _this2.props.closeOnBackdropClick;
 
 
-    if (event.target.classList.contains(className('view')) || !closeOnBackdropClick) return;
+    if (event.target.classList.contains(className('view')) || !closeOnBackdropClick) {
+      return;
+    }
 
     _this2.handleClose(event);
   };
